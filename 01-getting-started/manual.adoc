@@ -98,7 +98,12 @@ This populates your workspace with the Hello World example elements including:
   internal name of the created service app is
   `eslap://<your_domain>/service/<name>/0_0_1`.
 
-For this example, we can leave the component and service as they are.
+For this example, we can leave the component and service as they are. However, before deploying our service, we need to _build_ its component. Building a component basically implies packing it together with its dependencies.
+
+[source, shell]
+----
+kumori component build <name>
+----
 
 Before we can actually deploy, we need to configure our workspace with a valid API access token.
 This token can be obtained from https://dashboard.baco.kumori.cloud[Kumori Dashboard] - Settings page (three-dot menu at the top right).
@@ -116,10 +121,10 @@ And now we can deploy like so:
 
 [source,shell]
 ----
-kumori deployment deploy <name> -b -i
+kumori deployment deploy <name> -i
 ----
 
-Which will return us an URL to browse the service we just deployed. The `-b` flag tells the CLI to compile the component before deploying the service. The `-i` flag is used to generate automatically an HTTP inbound with a random domain and link it to our service.
+Which will return us an URL to browse the service we just deployed. The `-i` flag is used to generate automatically an HTTP inbound with a random domain and link it to our service.
 
 NOTE: An HTTP inbound is a special service used to enable HTTP external access to other services. The inbounds must be paired to a domain which can be either generated automatically or manually set.
 

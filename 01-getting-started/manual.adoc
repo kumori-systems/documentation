@@ -77,8 +77,10 @@ kumori set domain <your_domain>
 ----
 
 Now we are ready to start building our service. Our simple service will have
-just one component (the web server). We offer a set of templates which you can
-use to quickly implement simple service patterns. We make use of one of them:
+just one component (the web server). We offer a set of templates (see the
+https://github.com/kumori-systems/generator-workspace[Kumori Generator]
+repository for a complete templates list) which you can use to quickly
+implement simple service patterns. We make use of one of them:
 
 [source,shell]
 ----
@@ -98,9 +100,11 @@ This populates your workspace with the Hello World example elements including:
   internal name of the created service app is
   `eslap://<your_domain>/service/<name>/0_0_1`.
 
-For this example, we can leave the component and service as they are. However, before deploying our service, we need to _build_ its component. Building a component basically implies packing it together with its dependencies.
+For this example, we can leave the component and service as it is. However,
+before deploying our service, we need to build its component. Building a
+component basically implies packing it together with its dependencies.
 
-[source, shell]
+[source,shell]
 ----
 kumori component build <name>
 ----
@@ -124,8 +128,22 @@ And now we can deploy like so:
 kumori deployment deploy <name> -i
 ----
 
-Which will return us an URL to browse the service we just deployed. The `-i` flag is used to generate automatically an HTTP inbound with a random domain and link it to our service.
+Which will return us an URL to browse the service we just deployed and a couple
+of URNs. The first URN is our service identifier. The second URN is the id of
+the inbound linked to our service. The inbound is used to expose our service
+using a randomly generated URL and is created when the `-i` flag is used.
 
+NOTE: If your service responds with a 500 error code, please wait a few minutes and try again.
 NOTE: An HTTP inbound is a special service used to enable HTTP external access to other services. The inbounds must be paired to a domain which can be either generated automatically or manually set.
+NOTE: You can deploy your service as many times as you want. Each time, a new and independent instance of your service will be created.
 
-To learn more, continue reading the Quick Start guide you can find in https://github.com/kumori-systems/documentation[this same repo].
+To undeploy your service just run:
+
+[source,shell]
+----
+kumori deployment undeploy <service-urn>
+kumori deployment undeploy <inbound-urn>
+----
+
+To learn more, continue reading the Quick Start guide you can find in
+https://github.com/kumori-systems/documentation[this same repo].

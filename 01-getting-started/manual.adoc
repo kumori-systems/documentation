@@ -141,9 +141,10 @@ To undeploy your service just run:
 
 [source,shell]
 ----
-kumori deployment undeploy <service-urn>
-kumori deployment undeploy <inbound-urn>
+kumori deployment undeploy <service-urn> -i
 ----
+
+NOTE: The `-i` flag undeploys also the service inbound.
 
 To learn more, continue reading the Quick Start guide you can find in
 https://github.com/kumori-systems/documentation[this same repo].
